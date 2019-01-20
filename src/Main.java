@@ -1,17 +1,36 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 	public static void main(String[] args) throws Exception
 	{
 		File file = new File("res/S17 Text File.txt");
-		BufferedReader br = new BufferedReader(new FileReader(file));
 		
-		String st;
-		while((st = br.readLine()) != null)
-			System.out.println(st);
+		Scanner sc = new Scanner(file);
 		
+		String text = new String();
+		
+		while(sc.hasNextLine())
+			text = text.concat(sc.nextLine() + "\n");
+		
+		String regex = "[^\\W][a-zA-Z]*[0-9]*([a-zA-Z]*[0-9]*\\+)*(’[a-zA-Z]+[0-9]*)*";
+		
+		Pattern r = Pattern.compile(regex);
+		Matcher m = r.matcher("Hello");
+		
+		
+		//for some reason, the matcher doesnt work. i cant get the individual results
+		
+		//arraylist for all unique words
+		//loop
+		//check if word is in list
+		//if true, increment the counter
+		//else, make a new word object
+		//increment total word count
+		
+		//display
 		
 	}
 }
@@ -23,7 +42,7 @@ class Word{
 	public Word(String w)
 	{
 		word = w;
-		count = 0;
+		count = 1;
 	}
 	
 	public void incrementCount() {count++;}
