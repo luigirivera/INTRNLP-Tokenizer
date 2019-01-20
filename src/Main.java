@@ -31,17 +31,25 @@ public class Main {
 		{
 			boolean found = false;
 			for(Word w : words)
+			{
 				if(w.getWord().equalsIgnoreCase(s))
+				{
 					w.incrementCount();
+					found = true;
+				}
+			}
+				
 			
 			if(!found)
 				words.add(new Word(s));
 		}
 		
 		System.out.println("Total Word Count: " + matches.size());
-		
+
 		for(Word w : words)
+		{
 			System.out.println(w.getWord() + " : " + w.getCount());
+		}
 		
 	}
 }
