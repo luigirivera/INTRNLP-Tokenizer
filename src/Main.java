@@ -16,6 +16,8 @@ public class Main {
 		while(sc.hasNextLine())
 			text = text.concat(sc.nextLine() + "\n");
 		
+		sc.close();
+		
 		String regex = "[^\\W][a-zA-Z]*[0-9]*([a-zA-Z]*[0-9]*\\+)*(’[a-zA-Z]+[0-9]*)*";
 		
 		Pattern r = Pattern.compile(regex);
@@ -23,6 +25,8 @@ public class Main {
 		
 		ArrayList<String> matches = new ArrayList<String>();
 		ArrayList<Word> words = new ArrayList<Word>();
+		
+		
 		while(m.find())
 			matches.add(m.group(0));
 		
@@ -31,14 +35,12 @@ public class Main {
 		{
 			boolean found = false;
 			for(Word w : words)
-			{
 				if(w.getWord().equalsIgnoreCase(s))
 				{
 					w.incrementCount();
 					found = true;
 				}
-			}
-				
+			
 			
 			if(!found)
 				words.add(new Word(s));
@@ -47,10 +49,7 @@ public class Main {
 		System.out.println("Total Word Count: " + matches.size());
 
 		for(Word w : words)
-		{
 			System.out.println(w.getWord() + " : " + w.getCount());
-		}
-		
 	}
 }
 
