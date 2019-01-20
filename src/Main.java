@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,19 +19,29 @@ public class Main {
 		String regex = "[^\\W][a-zA-Z]*[0-9]*([a-zA-Z]*[0-9]*\\+)*(’[a-zA-Z]+[0-9]*)*";
 		
 		Pattern r = Pattern.compile(regex);
-		Matcher m = r.matcher("Hello");
+		Matcher m = r.matcher(text);
+		
+		ArrayList<String> matches = new ArrayList<String>();
+		ArrayList<Word> words = new ArrayList<Word>();
+		while(m.find())
+			matches.add(m.group(0));
 		
 		
-		//for some reason, the matcher doesnt work. i cant get the individual results
+		for(String s : matches)
+		{
+			boolean found = false;
+			for(Word w : words)
+				if(w.getWord().equalsIgnoreCase(s))
+					w.incrementCount();
+			
+			if(!found)
+				words.add(new Word(s));
+		}
 		
-		//arraylist for all unique words
-		//loop
-		//check if word is in list
-		//if true, increment the counter
-		//else, make a new word object
-		//increment total word count
+		System.out.println("Total Word Count: " + matches.size());
 		
-		//display
+		for(Word w : words)
+			System.out.println(w.getWord() + " : " + w.getCount());
 		
 	}
 }
