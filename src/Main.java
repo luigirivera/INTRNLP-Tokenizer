@@ -18,7 +18,7 @@ public class Main {
 		
 		sc.close();
 		
-		String regex = "[^\\W][a-zA-Z]*[0-9]*([a-zA-Z]*[0-9]*\\+)*(’[a-zA-Z]+[0-9]*)*";
+		String regex = "[^\\W][a-zA-Z]*[0-9]*([a-zA-Z]*[0-9]*\\+)*(’[a-zA-Z]+[0-9]*)*(-[a-zA-Z]+[0-9]*)*";
 		
 		Pattern r = Pattern.compile(regex);
 		Matcher m = r.matcher(text);
