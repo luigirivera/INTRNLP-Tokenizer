@@ -1,6 +1,7 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,14 +10,13 @@ public class Main {
 	{
 		File file = new File("res/S17 Text File.txt");
 		
-		Scanner sc = new Scanner(file);
+		BufferedReader br = new BufferedReader(new FileReader(file));
 		
+		String sc;
 		String text = new String();
 		
-		while(sc.hasNextLine())
-			text = text.concat(sc.nextLine() + "\n");
-		
-		sc.close();
+		while((sc = br.readLine()) != null)
+			text = text.concat(sc + "\n");
 		
 		String regex = "[^\\W][a-zA-Z]*[0-9]*([a-zA-Z]*[0-9]*\\+)*(’[a-zA-Z]+[0-9]*)*(-[a-zA-Z]+[0-9]*)*";
 		
@@ -46,10 +46,17 @@ public class Main {
 				words.add(new Word(s));
 		}
 		
-		System.out.println("Total Word Count: " + matches.size());
-
+		int sum = 0;
+		
 		for(Word w : words)
+			sum += w.getCount();
+		
+		System.out.println("Total Word Count: " + sum);
+
+		for(Word w : words) 
 			System.out.println(w.getWord() + " : " + w.getCount());
+		
+		br.close();
 	}
 }
 
