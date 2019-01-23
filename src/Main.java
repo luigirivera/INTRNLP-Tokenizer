@@ -17,8 +17,8 @@ public class Main {
 		
 		while((sc = br.readLine()) != null)
 			text = text.concat(sc + "\n");
-		
-		String regex = "[^\\W][a-zA-Z]*[0-9]*([a-zA-Z]*[0-9]*\\+)*(’[a-zA-Z]+[0-9]*)*(-[a-zA-Z]+[0-9]*)*";
+	
+		String regex = "\\w[a-zA-Z]*[0-9]*\\+*(’[a-zA-Z]+[0-9]*)*(-[a-zA-Z]+[0-9]*)*";
 		
 		Pattern r = Pattern.compile(regex);
 		Matcher m = r.matcher(text);
@@ -43,7 +43,12 @@ public class Main {
 			
 			
 			if(!found)
+			{
+				if(s.indexOf("’") != -1)
+					s = s.replace("’", "�");
+
 				words.add(new Word(s));
+			}
 		}
 		
 		int sum = 0;
